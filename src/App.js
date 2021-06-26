@@ -11,12 +11,16 @@ import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { useState } from "react";
 
 export default function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
   return (
     <>
       <Switch>
-        <ProtectedRoute path="/im/profile" render={<Main />} isAuth={isAuth} />
-        <ProtectedRoute path="/im" render={<DataFillForms />} isAuth={isAuth} />
+        <ProtectedRoute
+          path="/im/data"
+          render={<DataFillForms />}
+          isAuth={isAuth}
+        />
+        <ProtectedRoute path="/im" render={<Main />} isAuth={isAuth} />
         <ProtectedRoute path="/worker" render={<Worker />} isAuth={isAuth} />
         <ProtectedRoute path="/admin" render={<Admin />} isAuth={isAuth} />
         {/* <Route path="/im/profile" render={() => <Main />} /> */}
