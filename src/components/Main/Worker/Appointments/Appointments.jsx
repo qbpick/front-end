@@ -1,8 +1,3 @@
-
-
-export const name = (props) => {
-  
-  return <>
-  
-  </>
-}
+export const Appointments = (props) => {
+  return <></>;
+};

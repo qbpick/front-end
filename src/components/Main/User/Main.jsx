@@ -14,6 +14,14 @@ import {
 import { Redirect, Switch, useHistory } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
 
+import { Profile } from "./Profile/Profile";
+import { Fullname } from "./Fullname/Fullname";
+import { Passport } from "./Passport/Passport";
+import { School } from "./School/School";
+import { Certificate } from "./Certificate/Certificate";
+import { Family } from "./Family/Family";
+import { AddAcademics } from "./AddAcademics/AddAcademics";
+
 const { Content, Sider } = Layout;
 
 export const Main = (props) => {
@@ -89,6 +97,41 @@ export const Main = (props) => {
             >
               <Switch>
                 <Redirect from="/im" to="/im/profile" />
+                <ProtectedRoute
+                  path="/im/profile"
+                  render={<Profile />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/im/fullname"
+                  render={<Fullname />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/im/passport"
+                  render={<Passport />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/im/school"
+                  render={<School />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/im/certificate"
+                  render={<Certificate />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/im/family"
+                  render={<Family />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/im/academics"
+                  render={<AddAcademics />}
+                  isAuth={true}
+                />
               </Switch>
             </div>
           </Content>

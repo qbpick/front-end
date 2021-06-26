@@ -2,7 +2,7 @@ import { useState } from "react";
 import "antd/dist/antd.css";
 import style from "./Admin.module.css";
 import { Layout, Menu } from "antd";
-import { TeamOutlined, FileSearchOutlined } from "@ant-design/icons";
+import { TeamOutlined, FileSearchOutlined,BankOutlined } from "@ant-design/icons";
 import { Redirect, useHistory, Switch } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
 import { Logs } from "./Logs/Logs";
@@ -38,6 +38,13 @@ export const Admin = (props) => {
             >
               Логи
             </Menu.Item>
+            <Menu.Item
+              onClick={() => history.push("/admin/organization")}
+              key="3"
+              icon={<BankOutlined />}
+            >
+              Организация
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className={style.siteLayout}>
@@ -55,6 +62,11 @@ export const Admin = (props) => {
                 />
                 <ProtectedRoute
                   path="/admin/logs"
+                  render={<Logs />}
+                  isAuth={true}
+                />
+                <ProtectedRoute
+                  path="/admin/organization"
                   render={<Logs />}
                   isAuth={true}
                 />

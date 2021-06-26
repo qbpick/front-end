@@ -12,7 +12,7 @@ import {
 import { Redirect, Switch, useHistory } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
 
-import { Card } from "./Cards/Card";
+import { Cards } from "./Cards/Cards";
 import { Statement } from "./Reports/Statement/Statement";
 import { Requests } from "./Reports/Requests/Requests";
 import { EnrollList } from "./Enrollment/EnrollList/EnrollList";
@@ -108,7 +108,7 @@ export const Worker = (props) => {
                 <Redirect from="/worker" to="/worker/cards" />
                 <ProtectedRoute
                   path="/worker/cards"
-                  render={<Card />}
+                  render={<Cards />}
                   isAuth={true}
                 />
                 <ProtectedRoute

@@ -1,8 +1,3 @@
-
-
-export const name = (props) => {
-  
-  return <>
-  
-  </>
-}
+export const Statement = (props) => {
+  return <></>;
+};

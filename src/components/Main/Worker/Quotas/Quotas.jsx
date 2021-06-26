@@ -1,6 +1,6 @@
 
 
-export const name = (props) => {
+export const Quotas = (props) => {
   
   return <>
   
