@@ -1,0 +1,25 @@
+.container {
+  background-image: url("https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg");
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+}
+
+.header {
+  height: 55px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 55px;
+  margin-right: 16px;
+  vertical-align: top;
+}
+
+.title {
+  position: relative;
+  top: 2px;
+  font-weight: 600;
+  font-size: 33px;
+  font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
