@@ -16,6 +16,8 @@ export const FamilyForm = ({ step, setStep }) => {
       setIsLoad(false);
       history.push("/im");
     }, 500);
+    
+    // DEV
     console.log("Received values of form: ", values);
   };
   return (

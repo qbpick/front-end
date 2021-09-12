@@ -1,3 +1,8 @@
+# Before starting work and push commits
+
+**Check notes `in` file `App.js`**
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

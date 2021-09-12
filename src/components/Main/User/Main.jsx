@@ -22,7 +22,7 @@ import { Certificate } from "./Certificate/Certificate";
 import { Family } from "./Family/Family";
 import { AddAcademics } from "./AddAcademics/AddAcademics";
 
-const { Content, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 export const Main = (props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -32,6 +32,12 @@ export const Main = (props) => {
     <>
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            left: 0,
+            zIndex: 99,
+          }}
           collapsible
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
@@ -90,13 +96,24 @@ export const Main = (props) => {
           </Menu>
         </Sider>
         <Layout className={style.siteLayout}>
-          <Content style={{ margin: "12px 16px" }}>
+          <Header></Header>
+          <Content
+            style={{
+              margin: "12px 16px",
+              position: "relative",
+              overflow: "inherit",
+            }}
+          >
             <div
               className={style.siteLayoutBackground}
-              style={{ padding: 24, minHeight: "100%" }}
+              style={{
+                padding: 24,
+                minHeight: "fit-content",
+                width: "60%",
+              }}
             >
               <Switch>
-                <Redirect from="/im" to="/im/profile" />
+                <Redirect exact from="/im" to="/im/profile" />
                 <ProtectedRoute
                   path="/im/profile"
                   render={<Profile />}

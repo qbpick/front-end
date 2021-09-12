@@ -1,34 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import ".././Auth.css";
 import styles from "./LogIn.module.css";
-import { Form, Input, Button, Checkbox, Tabs } from "antd";
+import { Form, Input, Button, Checkbox, Tabs, notification } from "antd";
 import { PhoneOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 const { TabPane } = Tabs;
 
 const mi = {
   minLength: 11,
-  maxLength: 12,
+  maxLength: 11,
 };
 
-export const LogIn = () => {
+const openNotificationWithIcon = (type) => {
+  notification[type]({
+    message: "Ошибка",
+    description: "Пользователь с такими данными уже существует.",
+  });
+};
+
+export const LogIn = ({ setIsAuth, isAuth }) => {
   const [status, setStatus] = useState("Вход");
   const [load, setLoad] = useState(false);
   const history = useHistory();
 
-  const [isFirstLogin, setIsFirstLogin] = useState(true);
+  // const [isFirstLogin, setIsFirstLogin] = useState(true);
 
-  const onFinish = (values) => {
+  // Если пользвоатель логинился его редиректит в систему
+  useEffect(() => {
+    if (isAuth) {
+      history.push(`/im`);
+    }
+  }, []);
+
+  const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     setLoad(true);
-    if (isFirstLogin) {
-      setTimeout(() => {
-        history.push("/im/data");
-      }, 500);
+    if (status === "Вход") {
+      try {
+        const res = await axios.post(
+          "http://127.0.0.1:8000/api/auth", 
+          values
+        );
+        const { data } = res;
+        setIsAuth(true);
+        console.log(res);
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    } else {
+      try {
+        const res = await axios.post(
+          "http://127.0.0.1:8000/api/signup",
+          values
+        );
+        const { data } = res;
+        console.log(data);
+      } catch (error) {
+        console.log(error.response);
+        if (error.response.status === 422) {
+          openNotificationWithIcon("error");
+          setLoad(false);
+        }
+      }
     }
   };
-
   return (
     <div
       className={styles.container}
@@ -72,8 +109,16 @@ export const LogIn = () => {
               ),
               message: [
                 `Пожалуйста введите номер телефона`,
-                `в формате +7 000 000 0000`,
+                `в формате 7 000 000 0000`,
               ],
+            },
+            {
+              min: 11,
+              message: "Номер должен быть не менее 11 символов",
+            },
+            {
+              max: 11,
+              message: "Номер должен быть не более 11 символов",
             },
           ]}
         >
@@ -88,6 +133,10 @@ export const LogIn = () => {
                 type: "email",
                 message: " Пожалуйста введите e-mail",
               },
+              {
+                min: 3,
+                message: "Почта должна быть быть не менее 3 символов",
+              },
             ]}
           >
             <Input prefix={<MailOutlined />} placeholder=" E-mail" />
@@ -100,6 +149,10 @@ export const LogIn = () => {
               required: true,
               message: "Пожалуйста введите пароль",
             },
+            {
+              min: 8,
+              message: "Пароль должен быть не менее 8 символов",
+            },
           ]}
         >
           <Input
@@ -109,13 +162,15 @@ export const LogIn = () => {
           />
         </Form.Item>
 
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Запомнить меня</Checkbox>
-          </Form.Item>
+        {/* {status === "Вход" && (
+          <Form.Item>
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Запомнить меня</Checkbox>
+            </Form.Item>
 
-          <a className="login-form-forgot">Забыли пароль?</a>
-        </Form.Item>
+            <a className="login-form-forgot">Забыли пароль?</a>
+          </Form.Item>
+        )} */}
         {status === "Вход" && (
           <Form.Item>
             <Button

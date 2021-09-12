@@ -14,6 +14,8 @@ export const FullNameForm = ({ step, setStep }) => {
       setIsLoad(false);
       setStep(1);
     }, 500);
+
+    // DEV
     console.log("Received values of form: ", values);
   };
 
@@ -30,7 +32,7 @@ export const FullNameForm = ({ step, setStep }) => {
             },
             {
               min: 3,
-              message: "Минимум 3 символов.",
+              message: "Минимум 3 символа.",
             },
           ]}
         >

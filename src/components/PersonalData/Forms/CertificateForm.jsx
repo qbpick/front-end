@@ -16,6 +16,8 @@ export const CertificateForm = ({ step, setStep }) => {
       setIsLoad(false);
       setStep(4);
     }, 500);
+
+    // DEV
     console.log("Received values of form: ", values);
   };
 

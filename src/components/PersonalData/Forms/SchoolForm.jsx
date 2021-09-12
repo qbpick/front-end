@@ -17,6 +17,8 @@ export const SchoolForm = ({ step, setStep }) => {
       setIsLoad(false);
       setStep(3);
     }, 500);
+
+    // DEV
     console.log("Received values of form: ", values);
   };
 

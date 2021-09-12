@@ -42,6 +42,7 @@ export const DataFillForms = () => {
       description: "Данные о родителях",
     },
   ]);
+  // DEV
   console.log(current);
 
   // Only for Dev delete on prod
@@ -82,10 +83,7 @@ export const DataFillForms = () => {
                 flexDirection: "column",
               }}
             >
-              <div
-                style={{ width: "40%"}}
-                className="steps-content"
-              >
+              <div style={{ width: "40%" }} className="steps-content">
                 {steps[current].content}
               </div>
             </div>
