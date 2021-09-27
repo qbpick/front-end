@@ -13,7 +13,6 @@ export function Academics() {
       <Layout
         style={{
           transition: "linear 0.15s",
-          margin: collapsed ? "24px auto 20px" : "24px auto 20px",
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",

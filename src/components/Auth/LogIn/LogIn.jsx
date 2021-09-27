@@ -6,6 +6,8 @@ import { Form, Input, Button, Checkbox, Tabs, notification } from "antd";
 import { PhoneOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { changeIsAuth } from "../../../features/auth-slice";
 const { TabPane } = Tabs;
 
 const mi = {
@@ -20,11 +22,13 @@ const openNotificationWithIcon = (type) => {
   });
 };
 
-export const LogIn = ({ setIsAuth, isAuth }) => {
+export const LogIn = () => {
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const dispath = useDispatch();
+
   const [status, setStatus] = useState("Вход");
   const [load, setLoad] = useState(false);
   const history = useHistory();
-
   // const [isFirstLogin, setIsFirstLogin] = useState(true);
 
   // Если пользвоатель логинился его редиректит в систему
@@ -34,20 +38,18 @@ export const LogIn = ({ setIsAuth, isAuth }) => {
     }
   }, []);
 
+
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     setLoad(true);
     if (status === "Вход") {
       try {
-        const res = await axios.post(
-          "http://127.0.0.1:8000/api/auth", 
-          values
-        );
+        const res = await axios.post("http://127.0.0.1:8000/api/auth", values);
         const { data } = res;
-        setIsAuth(true);
-        console.log(res);
+        dispath(changeIsAuth(true));
+        console.log(res); // DEV
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error.response.data); // DEV
       }
     } else {
       try {
@@ -56,9 +58,9 @@ export const LogIn = ({ setIsAuth, isAuth }) => {
           values
         );
         const { data } = res;
-        console.log(data);
+        console.log(data); // DEV
       } catch (error) {
-        console.log(error.response);
+        console.log(error.response); // DEV
         if (error.response.status === 422) {
           openNotificationWithIcon("error");
           setLoad(false);

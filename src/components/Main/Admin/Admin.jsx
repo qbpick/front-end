@@ -58,17 +58,17 @@ export const Admin = (props) => {
                 <ProtectedRoute
                   path="/admin/workers"
                   render={<Workers />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/admin/logs"
                   render={<Logs />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/admin/organization"
                   render={<Logs />}
-                  isAuth={true}
+                  
                 />
               </Switch>
             </div>

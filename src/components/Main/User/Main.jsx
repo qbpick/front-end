@@ -22,7 +22,7 @@ import { Certificate } from "./Certificate/Certificate";
 import { Family } from "./Family/Family";
 import { AddAcademics } from "./AddAcademics/AddAcademics";
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 export const Main = (props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -35,6 +35,7 @@ export const Main = (props) => {
           style={{
             overflow: "auto",
             height: "100vh",
+            // position: "fixed",
             left: 0,
             zIndex: 99,
           }}
@@ -42,7 +43,14 @@ export const Main = (props) => {
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         >
-          <div className={style.logo}>А{!collapsed && "КВТ"}</div>
+          <div className={style.logo}>
+            <img
+              className={style.logo}
+              src="https://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkAIpXMwE19U7JAAoMIGLkqKaKTM5SRkZCeTgDn6uOyic"
+              alt="akvt logo"
+            />
+            {!collapsed && "АКВТ"}
+          </div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
             <Menu.Item
               onClick={() => history.push("/im/profile")}
@@ -96,7 +104,6 @@ export const Main = (props) => {
           </Menu>
         </Sider>
         <Layout className={style.siteLayout}>
-          <Header></Header>
           <Content
             style={{
               margin: "12px 16px",
@@ -114,40 +121,18 @@ export const Main = (props) => {
             >
               <Switch>
                 <Redirect exact from="/im" to="/im/profile" />
-                <ProtectedRoute
-                  path="/im/profile"
-                  render={<Profile />}
-                  isAuth={true}
-                />
-                <ProtectedRoute
-                  path="/im/fullname"
-                  render={<Fullname />}
-                  isAuth={true}
-                />
-                <ProtectedRoute
-                  path="/im/passport"
-                  render={<Passport />}
-                  isAuth={true}
-                />
-                <ProtectedRoute
-                  path="/im/school"
-                  render={<School />}
-                  isAuth={true}
-                />
+                <ProtectedRoute path="/im/profile" render={<Profile />} />
+                <ProtectedRoute path="/im/fullname" render={<Fullname />} />
+                <ProtectedRoute path="/im/passport" render={<Passport />} />
+                <ProtectedRoute path="/im/school" render={<School />} />
                 <ProtectedRoute
                   path="/im/certificate"
                   render={<Certificate />}
-                  isAuth={true}
                 />
-                <ProtectedRoute
-                  path="/im/family"
-                  render={<Family />}
-                  isAuth={true}
-                />
+                <ProtectedRoute path="/im/family" render={<Family />} />
                 <ProtectedRoute
                   path="/im/academics"
                   render={<AddAcademics />}
-                  isAuth={true}
                 />
               </Switch>
             </div>

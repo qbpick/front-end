@@ -109,37 +109,37 @@ export const Worker = (props) => {
                 <ProtectedRoute
                   path="/worker/cards"
                   render={<Cards />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/worker/reports/statement"
                   render={<Statement />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/worker/reports/requests"
                   render={<Requests />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/worker/enrollment/enrollees-list"
                   render={<EnrollList />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/worker/enrollment/order"
                   render={<Order />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/worker/quotas"
                   render={<Quotas />}
-                  isAuth={true}
+                  
                 />
                 <ProtectedRoute
                   path="/worker/appointments"
                   render={<Appointments />}
-                  isAuth={true}
+                  
                 />
               </Switch>
             </div>
