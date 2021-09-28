@@ -38,7 +38,7 @@ export const Worker = (props) => {
           <div className={style.logo}>Р{!collapsed && "аботник"}</div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
             <Menu.Item
-              onClick={() => history.push("/worker/cards")}
+              onClick={() => history.push("/cards")}
               key="1"
               icon={<TeamOutlined />}
             >
@@ -50,13 +50,13 @@ export const Worker = (props) => {
               title="Отчёты"
             >
               <Menu.Item
-                onClick={() => history.push("/worker/reports/statement")}
+                onClick={() => history.push("/reports/statement")}
                 key="2"
               >
                 Конкурсная ведомость
               </Menu.Item>
               <Menu.Item
-                onClick={() => history.push("/worker/reports/requests")}
+                onClick={() => history.push("/reports/requests")}
                 key="3"
               >
                 Кол-во заявок
@@ -69,28 +69,28 @@ export const Worker = (props) => {
             >
               <Menu.Item
                 onClick={() =>
-                  history.push("/worker/enrollment/enrollees-list")
+                  history.push("/enrollment/enrollees-list")
                 }
                 key="4"
               >
                 Список абитуриентов
               </Menu.Item>
               <Menu.Item
-                onClick={() => history.push("/worker/enrollment/order")}
+                onClick={() => history.push("/enrollment/order")}
                 key="5"
               >
                 Приказ
               </Menu.Item>
             </SubMenu>
             <Menu.Item
-              onClick={() => history.push("/worker/quotas")}
+              onClick={() => history.push("/quotas")}
               key="6"
               icon={<FolderAddOutlined />}
             >
               Квоты приема
             </Menu.Item>
             <Menu.Item
-              onClick={() => history.push("/worker/appointments")}
+              onClick={() => history.push("/appointments")}
               key="7"
               icon={<ScheduleOutlined />}
             >
@@ -105,39 +105,38 @@ export const Worker = (props) => {
               style={{ padding: 24, minHeight: "100%" }}
             >
               <Switch>
-                <Redirect from="/worker" to="/worker/cards" />
                 <ProtectedRoute
-                  path="/worker/cards"
+                  path="/cards"
                   render={<Cards />}
                   
                 />
                 <ProtectedRoute
-                  path="/worker/reports/statement"
+                  path="/reports/statement"
                   render={<Statement />}
                   
                 />
                 <ProtectedRoute
-                  path="/worker/reports/requests"
+                  path="/reports/requests"
                   render={<Requests />}
                   
                 />
                 <ProtectedRoute
-                  path="/worker/enrollment/enrollees-list"
+                  path="/enrollment/enrollees-list"
                   render={<EnrollList />}
                   
                 />
                 <ProtectedRoute
-                  path="/worker/enrollment/order"
+                  path="/enrollment/order"
                   render={<Order />}
                   
                 />
                 <ProtectedRoute
-                  path="/worker/quotas"
+                  path="/quotas"
                   render={<Quotas />}
                   
                 />
                 <ProtectedRoute
-                  path="/worker/appointments"
+                  path="/appointments"
                   render={<Appointments />}
                   
                 />

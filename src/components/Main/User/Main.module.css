@@ -6,5 +6,11 @@
   letter-spacing: 3px;
 }
 .siteLayout .siteLayoutBackground {
-  background: #fff;
+  position: relative;
+}
+.logout {
+  position: "absolute";
+  bottom: 0;
+  z-index: 1;
+  transition: "all 0.2s";
 }

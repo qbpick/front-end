@@ -25,21 +25,21 @@ export const Admin = (props) => {
           <div className={style.logo}>А{!collapsed && "дминистратор"}</div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
             <Menu.Item
-              onClick={() => history.push("/admin/workers")}
+              onClick={() => history.push("/workers")}
               key="1"
               icon={<TeamOutlined />}
             >
               Работники
             </Menu.Item>
             <Menu.Item
-              onClick={() => history.push("/admin/logs")}
+              onClick={() => history.push("/logs")}
               key="2"
               icon={<FileSearchOutlined />}
             >
               Логи
             </Menu.Item>
             <Menu.Item
-              onClick={() => history.push("/admin/organization")}
+              onClick={() => history.push("/organization")}
               key="3"
               icon={<BankOutlined />}
             >
@@ -54,19 +54,18 @@ export const Admin = (props) => {
               style={{ padding: 24, minHeight: "100%" }}
             >
               <Switch>
-                <Redirect from="/admin" to="/admin/workers" />
                 <ProtectedRoute
-                  path="/admin/workers"
+                  path="/workers"
                   render={<Workers />}
                   
                 />
                 <ProtectedRoute
-                  path="/admin/logs"
+                  path="/logs"
                   render={<Logs />}
                   
                 />
                 <ProtectedRoute
-                  path="/admin/organization"
+                  path="/organization"
                   render={<Logs />}
                   
                 />

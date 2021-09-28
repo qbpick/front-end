@@ -32,40 +32,44 @@ export const LogIn = () => {
   // const [isFirstLogin, setIsFirstLogin] = useState(true);
 
   // Если пользвоатель логинился его редиректит в систему
+  // перенести в App.js
   useEffect(() => {
     if (isAuth) {
-      history.push(`/im`);
+      history.push(`/`);
     }
   }, []);
 
+  const logIn = async (values) => {
+    try {
+      const res = await axios.post("http://127.0.0.1:8000/api/auth", values);
+      const { data } = res;
+      dispath(changeIsAuth(true));
+      console.log(res); // DEV
+    } catch (error) {
+      console.log(error.response.data); // DEV
+    }
+  };
+  const signUp = async (values) => {
+    try {
+      const res = await axios.post("http://127.0.0.1:8000/api/signup", values);
+      const { data } = res;
+      console.log(data); // DEV
+    } catch (error) {
+      console.log(error.response); // DEV
+      if (error.response.status === 422) {
+        openNotificationWithIcon("error");
+        setLoad(false);
+      }
+    }
+  };
 
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     setLoad(true);
     if (status === "Вход") {
-      try {
-        const res = await axios.post("http://127.0.0.1:8000/api/auth", values);
-        const { data } = res;
-        dispath(changeIsAuth(true));
-        console.log(res); // DEV
-      } catch (error) {
-        console.log(error.response.data); // DEV
-      }
+      await logIn(values);
     } else {
-      try {
-        const res = await axios.post(
-          "http://127.0.0.1:8000/api/signup",
-          values
-        );
-        const { data } = res;
-        console.log(data); // DEV
-      } catch (error) {
-        console.log(error.response); // DEV
-        if (error.response.status === 422) {
-          openNotificationWithIcon("error");
-          setLoad(false);
-        }
-      }
+      await signUp(values);
     }
   };
   return (
@@ -86,7 +90,7 @@ export const LogIn = () => {
           src="https://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkAIpXMwE19U7JAAoMIGLkqKaKTM5SRkZCeTgDn6uOyic"
           alt="akvt logo"
         />
-        <span className={styles.title}>АКВТ</span>
+        <span className={styles.title}>AKVT</span>
       </div>
       <Tabs activeKey={status} onChange={setStatus}>
         <TabPane tab="Вход" key="Вход" />
