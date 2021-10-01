@@ -4,8 +4,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuth: true,
+    isAuth: JSON.parse(localStorage.getItem("auth")),
     /* 
+      maybe sessionStorage for admins 
 			student - студент 
 			admin - администратор
 			admission-secretaty - секретарь приемной комиссии
@@ -16,6 +17,7 @@ export const authSlice = createSlice({
   reducers: {
     changeIsAuth: (state, action) => {
       state.isAuth = action.payload;
+      localStorage.setItem("auth", JSON.stringify(action.payload));
     },
     changeRole: (state, action) => {
       state.role = action.payload;

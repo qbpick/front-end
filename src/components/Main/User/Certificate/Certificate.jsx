@@ -20,7 +20,7 @@ export const Certificate = (props) => {
 
   return (
     <>
-      <div style={{ overflowY: "scroll" }}>
+      <div>
         <Form style={{ textAlign: "center" }} size="large" onFinish={onFinish}>
           <Form.List
             name="fields"

@@ -1,0 +1,14 @@
+.flexItem {
+  flex: 1 1 100%;
+}
+@media (min-width: 640px) {
+  .flexItem {
+    flex-basis: calc((100% / 2) - 1rem);
+  }
+}
+@media (min-width: 1024px) {
+  .flexItem {
+    flex-basis: calc((100% / 3) - 2rem);
+    height: 50%;
+  }
+}

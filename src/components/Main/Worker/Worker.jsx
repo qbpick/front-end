@@ -68,9 +68,7 @@ export const Worker = (props) => {
               title="Зачисление"
             >
               <Menu.Item
-                onClick={() =>
-                  history.push("/enrollment/enrollees-list")
-                }
+                onClick={() => history.push("/enrollment/enrollees-list")}
                 key="4"
               >
                 Список абитуриентов
@@ -105,40 +103,24 @@ export const Worker = (props) => {
               style={{ padding: 24, minHeight: "100%" }}
             >
               <Switch>
-                <ProtectedRoute
-                  path="/cards"
-                  render={<Cards />}
-                  
-                />
+                <ProtectedRoute path="/cards" render={<Cards />} />
                 <ProtectedRoute
                   path="/reports/statement"
                   render={<Statement />}
-                  
                 />
                 <ProtectedRoute
                   path="/reports/requests"
                   render={<Requests />}
-                  
                 />
                 <ProtectedRoute
                   path="/enrollment/enrollees-list"
                   render={<EnrollList />}
-                  
                 />
-                <ProtectedRoute
-                  path="/enrollment/order"
-                  render={<Order />}
-                  
-                />
-                <ProtectedRoute
-                  path="/quotas"
-                  render={<Quotas />}
-                  
-                />
+                <ProtectedRoute path="/enrollment/order" render={<Order />} />
+                <ProtectedRoute path="/quotas" render={<Quotas />} />
                 <ProtectedRoute
                   path="/appointments"
                   render={<Appointments />}
-                  
                 />
               </Switch>
             </div>

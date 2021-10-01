@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import style from "./Main.module.css";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, BackTop } from "antd";
 import {
   TeamOutlined,
   UserOutlined,
@@ -12,7 +12,7 @@ import {
   ReconciliationOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Redirect, Switch, useHistory } from "react-router-dom";
+import { Redirect, Switch, useHistory, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
 import { Profile } from "./Profile/Profile";
 import { Fullname } from "./Fullname/Fullname";
@@ -29,7 +29,7 @@ const { Content, Sider } = Layout;
 export const Main = () => {
   const [collapsed, setCollapsed] = useState(false);
   let history = useHistory();
-
+  let { pathname } = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,10 +45,11 @@ export const Main = () => {
     <>
       <Layout>
         <Sider
+          className={style.sider}
           style={{
             overflow: "hidden",
             height: "100vh",
-            // position: "fixed",
+            position: "fixed",
             left: 0,
             zIndex: 99,
           }}
@@ -64,52 +65,52 @@ export const Main = () => {
             /> */}
             {!collapsed && "АКВТ"}
           </div>
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
+          <Menu theme="dark" defaultSelectedKeys={pathname} mode="vertical">
             <Menu.Item
               onClick={() => history.push("/profile")}
-              key="1"
+              key="/profile"
               icon={<UserOutlined />}
             >
               Профиль
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/fullname")}
-              key="2"
+              key="/fullname"
               icon={<SolutionOutlined />}
             >
               ФИО
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/passport")}
-              key="3"
+              key="/passport"
               icon={<ProfileOutlined />}
             >
               Паспорт
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/school")}
-              key="4"
+              key="/school"
               icon={<HomeOutlined />}
             >
               Школа
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/certificate")}
-              key="5"
+              key="/certificate"
               icon={<FileProtectOutlined />}
             >
               Аттестат
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/family")}
-              key="6"
+              key="/family"
               icon={<TeamOutlined />}
             >
               Семья
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/academics")}
-              key="7"
+              key="/academics"
               icon={<ReconciliationOutlined />}
             >
               Выбор специальности
@@ -132,12 +133,14 @@ export const Main = () => {
         </Sider>
         <Layout
           className={style.siteLayout}
-          style={{ position: "relative", minHeight: "100vh" }}
+          style={{
+            position: "relative",
+            minHeight: "100vh",
+          }}
         >
           <Content
             style={{
               margin: "12px 16px",
-              color: "white",
               overflow: "inherit",
             }}
           >
@@ -145,12 +148,11 @@ export const Main = () => {
               className={style.siteLayoutBackground}
               style={{
                 padding: 24,
-                minHeight: "fit-content",
-                width: "60%",
+                backgroundColor: "#fff",
+                overflow: "hidden",
               }}
             >
               <Switch>
-                <Redirect from="/" to="/profile" />
                 <ProtectedRoute path="/profile" render={<Profile />} />
                 <ProtectedRoute path="/fullname" render={<Fullname />} />
                 <ProtectedRoute path="/passport" render={<Passport />} />
@@ -158,7 +160,9 @@ export const Main = () => {
                 <ProtectedRoute path="/certificate" render={<Certificate />} />
                 <ProtectedRoute path="/family" render={<Family />} />
                 <ProtectedRoute path="/academics" render={<AddAcademics />} />
+                <Redirect exact to="/profile" from="*" />
               </Switch>
+              <BackTop />
             </div>
           </Content>
         </Layout>

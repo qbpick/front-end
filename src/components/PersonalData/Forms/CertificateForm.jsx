@@ -30,7 +30,7 @@ export const CertificateForm = ({ step, setStep }) => {
             rules={[
               {
                 validator: async (_, fields) => {
-                  if (!fields || fields.length < 2) {
+                  if (!fields || fields.length < 10) {
                     return Promise.reject(
                       new Error("Должно быть минимум 10 предметов.")
                     );

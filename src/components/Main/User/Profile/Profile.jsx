@@ -1,8 +1,9 @@
-
+import { Typography } from 'antd';
+const { Title } = Typography;
 
 export const Profile = (props) => {
   
   return <>
-    Профиль
+    <Title>Профиль</Title>
   </>
 }

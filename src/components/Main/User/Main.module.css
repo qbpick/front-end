@@ -7,10 +7,24 @@
 }
 .siteLayout .siteLayoutBackground {
   position: relative;
+  margin-left: 0;
 }
 .logout {
   position: "absolute";
   bottom: 0;
   z-index: 1;
   transition: "all 0.2s";
+}
+
+.sider {
+  display: none;
+}
+@media (min-width: 640px) {
+  .sider {
+    display: block;
+  }
+  .siteLayout .siteLayoutBackground {
+    position: relative;
+    margin-left: 200px;
+  }
 }

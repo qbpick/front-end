@@ -2,7 +2,11 @@ import { useState } from "react";
 import "antd/dist/antd.css";
 import style from "./Admin.module.css";
 import { Layout, Menu } from "antd";
-import { TeamOutlined, FileSearchOutlined,BankOutlined } from "@ant-design/icons";
+import {
+  TeamOutlined,
+  FileSearchOutlined,
+  BankOutlined,
+} from "@ant-design/icons";
 import { Redirect, useHistory, Switch } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
 import { Logs } from "./Logs/Logs";
@@ -26,21 +30,21 @@ export const Admin = (props) => {
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
             <Menu.Item
               onClick={() => history.push("/workers")}
-              key="1"
+              key="/workers"
               icon={<TeamOutlined />}
             >
               Работники
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/logs")}
-              key="2"
+              key="/logs"
               icon={<FileSearchOutlined />}
             >
               Логи
             </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/organization")}
-              key="3"
+              key="/organization"
               icon={<BankOutlined />}
             >
               Организация
@@ -54,21 +58,9 @@ export const Admin = (props) => {
               style={{ padding: 24, minHeight: "100%" }}
             >
               <Switch>
-                <ProtectedRoute
-                  path="/workers"
-                  render={<Workers />}
-                  
-                />
-                <ProtectedRoute
-                  path="/logs"
-                  render={<Logs />}
-                  
-                />
-                <ProtectedRoute
-                  path="/organization"
-                  render={<Logs />}
-                  
-                />
+                <ProtectedRoute path="/workers" render={<Workers />} />
+                <ProtectedRoute path="/logs" render={<Logs />} />
+                <ProtectedRoute path="/organization" render={<Logs />} />
               </Switch>
             </div>
           </Content>

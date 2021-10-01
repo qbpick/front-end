@@ -1,7 +1,7 @@
 import { Form, Input, Button } from "antd";
 import { useState } from "react";
 
-import { CheckOutlined } from "@ant-design/icons";
+import { CheckOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 const mi = {
   minLength: 11,
@@ -14,9 +14,9 @@ export const FamilyForm = ({ step, setStep }) => {
     setIsLoad(true);
     setTimeout(() => {
       setIsLoad(false);
-      history.push("/im");
+      history.push("/academics");
     }, 500);
-    
+
     // DEV
     console.log("Received values of form: ", values);
   };
@@ -85,7 +85,8 @@ export const FamilyForm = ({ step, setStep }) => {
         </Form.Item>
         <Form.Item>
           <Button loading={isLoad} type="primary" htmlType="submit" block>
-            Завершить {isLoad ? "" : <CheckOutlined />}
+            Перейти в выбору специальностей{" "}
+            {isLoad ? "" : <ArrowRightOutlined />}
           </Button>
         </Form.Item>
       </Form>

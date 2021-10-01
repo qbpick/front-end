@@ -34,20 +34,23 @@ export const LogIn = () => {
   // Если пользвоатель логинился его редиректит в систему
   // перенести в App.js
   useEffect(() => {
+    console.log(isAuth);
     if (isAuth) {
       history.push(`/`);
     }
   }, []);
 
   const logIn = async (values) => {
-    try {
-      const res = await axios.post("http://127.0.0.1:8000/api/auth", values);
-      const { data } = res;
-      dispath(changeIsAuth(true));
-      console.log(res); // DEV
-    } catch (error) {
-      console.log(error.response.data); // DEV
-    }
+    dispath(changeIsAuth(true));
+    history.push(`/profile`);
+    // try {
+    //   const res = await axios.post("http://127.0.0.1:8000/api/auth", values);
+    //   const { data } = res;
+    //   dispath(changeIsAuth(true));
+    //   console.log(res); // DEV
+    // } catch (error) {
+    //   console.log(error.response.data); // DEV
+    // }
   };
   const signUp = async (values) => {
     try {

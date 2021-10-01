@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 /* ----------------------------------------------------------------
   Notes:
   Add dev flag - '// DEV' For all dev console logs 
-
+  Добавить гражданство другой страны && <Tag/>
 ---------------------------------------------------------------- */
 const routeRoles = {
   student: <Main />,
@@ -24,8 +24,8 @@ const routeRoles = {
 
 export default function App() {
   /* -----------------------------------------------------   */
-  /* Add localStorage 'auth'                                 */
   /* Delete RegExp from Personal Data                        */
+  /* ADD Lazy-load                                           */
   /* -----------------------------------------------------   */
   const role = useSelector((state) => state.auth.role);
 
@@ -33,10 +33,10 @@ export default function App() {
     <>
       <Switch>
         <Route exact path="/login" render={() => <LogIn />} />
-        <ProtectedRoute path="/" render={routeRoles[role]} />
-        <Route path="/academics" render={() => <Academics />} />
-
         <ProtectedRoute path="/personal-data" render={<DataFillForms />} />
+        <ProtectedRoute path="/" render={routeRoles[role]} />
+
+        <Route path="/academics" render={() => <Academics />} />
 
         {/* <ProtectedRoute path="/im/data" render={<DataFillForms />} />
         <ProtectedRoute path="/im" render={<Main />} />
