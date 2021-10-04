@@ -122,6 +122,7 @@ export const Worker = (props) => {
                   path="/appointments"
                   render={<Appointments />}
                 />
+                <Redirect from="*" to="/cards" />
               </Switch>
             </div>
           </Content>

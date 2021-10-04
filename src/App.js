@@ -1,7 +1,7 @@
 import "./index.css";
 import "antd/dist/antd.css";
 import { Redirect, Route, Switch } from "react-router";
-import { Academics } from "./components/Academics/Academics";
+import { Specialties } from "./components/Specialties/Specialties";
 import { LogIn } from "./components/Auth/LogIn/LogIn";
 import { Main } from "./components/Main/User/Main";
 import { DataFillForms } from "./components/PersonalData/DataFillForms";
@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
   Notes:
   Add dev flag - '// DEV' For all dev console logs 
   Добавить гражданство другой страны && <Tag/>
+  maybe sessionStorage for admins 
 ---------------------------------------------------------------- */
 const routeRoles = {
   student: <Main />,
@@ -36,7 +37,7 @@ export default function App() {
         <ProtectedRoute path="/personal-data" render={<DataFillForms />} />
         <ProtectedRoute path="/" render={routeRoles[role]} />
 
-        <Route path="/academics" render={() => <Academics />} />
+        <Route path="/academics" render={() => <Specialties />} />
 
         {/* <ProtectedRoute path="/im/data" render={<DataFillForms />} />
         <ProtectedRoute path="/im" render={<Main />} />
@@ -50,7 +51,7 @@ export default function App() {
         {/* ---------------------------------------------- 
           Later Remove Redirect from '/'  
           Make '/' Page - About This Site
-            See Academics
+            See Specialties
 
         ----------------------------------------------*/}
       </Switch>

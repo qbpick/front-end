@@ -11,6 +11,7 @@ import { Redirect, useHistory, Switch } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
 import { Logs } from "./Logs/Logs";
 import { Workers } from "./Workers/Workers";
+import { Organization } from "./Organization/Organization";
 
 const { Content, Sider } = Layout;
 
@@ -27,7 +28,7 @@ export const Admin = (props) => {
           onCollapse={() => setCollapsed(!collapsed)}
         >
           <div className={style.logo}>А{!collapsed && "дминистратор"}</div>
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
+          <Menu theme="dark" defaultSelectedKeys={["/workers"]} mode="vertical">
             <Menu.Item
               onClick={() => history.push("/workers")}
               key="/workers"
@@ -60,7 +61,11 @@ export const Admin = (props) => {
               <Switch>
                 <ProtectedRoute path="/workers" render={<Workers />} />
                 <ProtectedRoute path="/logs" render={<Logs />} />
-                <ProtectedRoute path="/organization" render={<Logs />} />
+                <ProtectedRoute
+                  path="/organization"
+                  render={<Organization />}
+                />
+                <Redirect from="*" to="/workers" />
               </Switch>
             </div>
           </Content>

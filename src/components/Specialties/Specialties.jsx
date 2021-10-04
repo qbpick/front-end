@@ -1,19 +1,19 @@
-import style from "./Academics.module.css";
+import style from "./Specialties.module.css";
 import { Typography, Popover, Tooltip } from "antd";
 import "antd/dist/antd.css";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { AcademicCard } from "./AcademicCard/AcademicCard";
+import { SpecialtyCard } from "./SpecialtyCard/SpecialtyCard";
 const { Title } = Typography;
 
 const tooltipContent = (
   <div>
     <p>Вы можете подать документы только на 2 (две) специальности.</p>
     Нажав на специальность вы сможете подробнее узнать о ней.
-  </div>
+  </div> 
 );
 
-export function Academics() {
+export function Specialties() {
   const [mockMap, setMockMap] = useState([
     {
       code: "09.02.01",
@@ -91,11 +91,11 @@ export function Academics() {
           </Tooltip>
         </span>
       </Title>
-      
+
       <br />
       <div className={style.flexContainer}>
         {mockMap.map(({ code, speciality, qualification }) => (
-          <AcademicCard
+          <SpecialtyCard
             code={code}
             speciality={speciality}
             qualification={qualification}

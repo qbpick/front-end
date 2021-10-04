@@ -12,7 +12,7 @@ export const authSlice = createSlice({
 			admission-secretaty - секретарь приемной комиссии
 			admissions-officer - работник приемной комиссии - лох который только удаляет и добавляет
 	  */
-    role: "student",
+    role: "admin",
   },
   reducers: {
     changeIsAuth: (state, action) => {

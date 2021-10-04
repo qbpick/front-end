@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import style from "./Main.module.css";
-import { Layout, Menu, BackTop } from "antd";
+import { Layout, Menu, BackTop, Button, notification } from "antd";
 import {
   TeamOutlined,
   UserOutlined,
@@ -20,26 +20,44 @@ import { Passport } from "./Passport/Passport";
 import { School } from "./School/School";
 import { Certificate } from "./Certificate/Certificate";
 import { Family } from "./Family/Family";
-import { AddAcademics } from "./AddAcademics/AddAcademics";
-import { useDispatch } from "react-redux";
+import { AddSpecialties } from "./AddSpecialties/AddSpecialties";
+import { useDispatch, useSelector } from "react-redux";
 import { changeIsAuth } from "../../../features/auth-slice";
 
 const { Content, Sider } = Layout;
 
 export const Main = () => {
   const [collapsed, setCollapsed] = useState(false);
-  let history = useHistory();
-  let { pathname } = useLocation();
+  const isAppointment = useSelector((state) => state.student.isAppointment);
+  const selectedSpecialties = useSelector(
+    (state) => state.student.selectedSpecialties
+  );
   const dispatch = useDispatch();
+  let history = useHistory();
+
+  console.log(history);
 
   useEffect(() => {
-    // change: push on active
-    // history.push("/profile");
+    if (!isAppointment) {
+      openNotificationWithIcon(
+        "warning",
+        "Вы не записались на подтверждение введенных данных."
+      );
+    }
+    if (selectedSpecialties.length === 0) {
+      openNotificationWithIcon("warning", "Вы не выбрали специальности!");
+    }
   }, []);
 
   const handleLogout = () => {
     history.push("/login");
     dispatch(changeIsAuth(false));
+  };
+  const openNotificationWithIcon = (type, text) => {
+    notification[type]({
+      message: "Внимание",
+      description: text,
+    });
   };
   return (
     <>
@@ -65,7 +83,11 @@ export const Main = () => {
             /> */}
             {!collapsed && "АКВТ"}
           </div>
-          <Menu theme="dark" defaultSelectedKeys={pathname} mode="vertical">
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={history?.location?.pathname}
+            mode="vertical"
+          >
             <Menu.Item
               onClick={() => history.push("/profile")}
               key="/profile"
@@ -134,7 +156,6 @@ export const Main = () => {
         <Layout
           className={style.siteLayout}
           style={{
-            position: "relative",
             minHeight: "100vh",
           }}
         >
@@ -159,8 +180,8 @@ export const Main = () => {
                 <ProtectedRoute path="/school" render={<School />} />
                 <ProtectedRoute path="/certificate" render={<Certificate />} />
                 <ProtectedRoute path="/family" render={<Family />} />
-                <ProtectedRoute path="/academics" render={<AddAcademics />} />
-                <Redirect exact to="/profile" from="*" />
+                <ProtectedRoute path="/academics" render={<AddSpecialties />} />
+                <Redirect from="*" to="/profile" />
               </Switch>
               <BackTop />
             </div>
