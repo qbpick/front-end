@@ -1,5 +1,5 @@
 import { Form, Input, Select, Button } from "antd";
-import React from "react";
+import style from "../Main.module.css";
 import { useState } from "react";
 import {
   MinusCircleOutlined,
@@ -7,7 +7,7 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 const { Option } = Select;
-
+// TODO: Add AutoComplete on select lesson
 export const Certificate = (props) => {
   const [isLoad, setIsLoad] = useState(false);
   const onFinish = (values) => {
@@ -18,16 +18,22 @@ export const Certificate = (props) => {
     console.log("Received values of form: ", values);
   };
 
+  const mockles = [
+    { lesson: "Мотеша", mark: 5 },
+    { lesson: "Рус", mark: 4 },
+    { lesson: "Ин", mark: 3 },
+  ];
+
   return (
     <>
       <div>
-        <Form style={{ textAlign: "center" }} size="large" onFinish={onFinish}>
+        <Form className={style.forms} size="large" onFinish={onFinish}>
           <Form.List
             name="fields"
             rules={[
               {
                 validator: async (_, fields) => {
-                  if (!fields || fields.length < 2) {
+                  if (!fields || fields.length < 10) {
                     return Promise.reject(
                       new Error("Должно быть минимум 10 предметов.")
                     );
@@ -41,9 +47,9 @@ export const Certificate = (props) => {
                 <>
                   {fields.map((field, index) => (
                     <div key={field.key}>
-                      <Input.Group compact style={{ width: "100%" }}>
+                      <Input.Group compact>
                         <Form.Item
-                          style={{ width: "75%" }}
+                          style={{ width: "80%" }}
                           name={[index, "lesson"]}
                           rules={[
                             { required: true, message: "Введите предмет" },
@@ -56,7 +62,6 @@ export const Certificate = (props) => {
                           <Input placeholder="Предмет" />
                         </Form.Item>
                         <Form.Item
-                          style={{ width: "20%" }}
                           name={[index, "mark"]}
                           noStyle
                           rules={[
@@ -64,8 +69,8 @@ export const Certificate = (props) => {
                           ]}
                         >
                           <Select
+                            style={{ width: "20%" }}
                             showSearch
-                            style={{ width: 100 }}
                             placeholder="Оценка"
                             optionFilterProp="children"
                             filterOption={(input, option) =>
@@ -80,13 +85,10 @@ export const Certificate = (props) => {
                           </Select>
                         </Form.Item>
                         {fields.length > 1 ? (
-                          <Button
-                            type="danger"
-                            className="dynamic-delete-button"
+                          <MinusCircleOutlined
+                            className={style.dynamicDeleteButton}
                             onClick={() => remove(field.name)}
-                          >
-                            <MinusCircleOutlined />
-                          </Button>
+                          />
                         ) : null}
                       </Input.Group>
                     </div>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "antd/dist/antd.css";
 import style from "./Main.module.css";
-import { Layout, Menu, BackTop, Button, notification } from "antd";
+import { Layout, Menu, BackTop, notification } from "antd";
 import {
   TeamOutlined,
   UserOutlined,
@@ -11,6 +11,7 @@ import {
   FileProtectOutlined,
   ReconciliationOutlined,
   LogoutOutlined,
+  FieldTimeOutlined,
 } from "@ant-design/icons";
 import { Redirect, Switch, useHistory, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "../../ProtectedRoute/ProtectedRoute";
@@ -23,21 +24,23 @@ import { Family } from "./Family/Family";
 import { AddSpecialties } from "./AddSpecialties/AddSpecialties";
 import { useDispatch, useSelector } from "react-redux";
 import { changeIsAuth } from "../../../features/auth-slice";
+import { Appointments } from "./Appointments/Appointments";
+// import SubMenu from "antd/lib/menu/SubMenu";
 
 const { Content, Sider } = Layout;
 
 export const Main = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  // const [isPhone, setIsPhone] = useState(window.innerWidth); Do side menu on mobile
   const isAppointment = useSelector((state) => state.student.isAppointment);
   const selectedSpecialties = useSelector(
     (state) => state.student.selectedSpecialties
   );
   const dispatch = useDispatch();
   let history = useHistory();
-
-  console.log(history);
+  let location = useLocation();
 
   useEffect(() => {
+    window.sessionStorage.setItem('isVisitedSpec', JSON.stringify(false))
     if (!isAppointment) {
       openNotificationWithIcon(
         "warning",
@@ -71,9 +74,6 @@ export const Main = () => {
             left: 0,
             zIndex: 99,
           }}
-          // collapsible
-          collapsed={collapsed}
-          onCollapse={() => setCollapsed(!collapsed)}
         >
           <div className={style.logo}>
             {/* <img
@@ -81,13 +81,15 @@ export const Main = () => {
               src="https://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkAIpXMwE19U7JAAoMIGLkqKaKTM5SRkZCeTgDn6uOyic"
               alt="akvt logo"
             /> */}
-            {!collapsed && "АКВТ"}
+            АКВТ
           </div>
           <Menu
             theme="dark"
-            defaultSelectedKeys={history?.location?.pathname}
+            selectedKeys={[location.pathname]}
+            // defaultSelectedKeys={[location.pathname]}
             mode="vertical"
           >
+            {/* <SubMenu key="sub1" icon={<UserOutlined />} title="Профиль"> */}
             <Menu.Item
               onClick={() => history.push("/profile")}
               key="/profile"
@@ -130,6 +132,14 @@ export const Main = () => {
             >
               Семья
             </Menu.Item>
+            {/* </SubMenu> */}
+            <Menu.Item
+              onClick={() => history.push("/appointments")}
+              key="/appointments"
+              icon={<FieldTimeOutlined />}
+            >
+              Запись
+            </Menu.Item>
             <Menu.Item
               onClick={() => history.push("/academics")}
               key="/academics"
@@ -171,6 +181,7 @@ export const Main = () => {
                 padding: 24,
                 backgroundColor: "#fff",
                 overflow: "hidden",
+                minHeight: "100%",
               }}
             >
               <Switch>
@@ -180,8 +191,12 @@ export const Main = () => {
                 <ProtectedRoute path="/school" render={<School />} />
                 <ProtectedRoute path="/certificate" render={<Certificate />} />
                 <ProtectedRoute path="/family" render={<Family />} />
+                <ProtectedRoute
+                  path="/appointments"
+                  render={<Appointments />}
+                />
                 <ProtectedRoute path="/academics" render={<AddSpecialties />} />
-                <Redirect from="*" to="/profile" />
+                {/* <Redirect from="*" to="/profile" /> */}
               </Switch>
               <BackTop />
             </div>

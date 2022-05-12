@@ -1,3 +1,4 @@
+import style from "../Main.module.css";
 import { useState } from "react";
 import { Form, Input, Select, DatePicker, Button } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
@@ -21,7 +22,7 @@ export const School = (props) => {
 
   return (
     <>
-      <Form size="large" onFinish={onFinish}>
+      <Form className={style.forms} size="large" onFinish={onFinish}>
         <Form.Item
           name="school_name"
           rules={[

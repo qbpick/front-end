@@ -30,19 +30,23 @@ export const LogIn = () => {
   const [load, setLoad] = useState(false);
   const history = useHistory();
   // const [isFirstLogin, setIsFirstLogin] = useState(true);
-
-  // Если пользвоатель логинился его редиректит в систему
-  // перенести в App.js
+  const [pnum, setPnum] = useState("21212");
+  const handleChange = (e) => {
+    const value = e.target.value;
+    console.log(value[0]);
+    if (value[0] === 8 || value[0] === 7) {
+      setPnum("+7(");
+    }
+  };
   useEffect(() => {
-    console.log(isAuth);
     if (isAuth) {
       history.push(`/`);
     }
-  }, []);
+  }, [isAuth, history]);
 
   const logIn = async (values) => {
     dispath(changeIsAuth(true));
-    history.push(`/profile`);
+    history.push(`/`);
     // try {
     //   const res = await axios.post("http://127.0.0.1:8000/api/auth", values);
     //   const { data } = res;
@@ -131,7 +135,13 @@ export const LogIn = () => {
             },
           ]}
         >
-          <Input {...mi} prefix={<PhoneOutlined />} placeholder=" Телефон" />
+          <Input
+            {...mi}
+            value={pnum}
+            onChange={handleChange}
+            prefix={<PhoneOutlined />}
+            placeholder=" Телефон"
+          />
         </Form.Item>
         {status === "Регистрация" && (
           <Form.Item

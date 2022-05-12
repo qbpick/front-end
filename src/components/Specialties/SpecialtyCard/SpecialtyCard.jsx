@@ -3,7 +3,6 @@ import { Card, Modal, Button, notification } from "antd";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSpecialty } from "../../../features/student-slice";
-import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 export const SpecialtyCard = ({ code, speciality, qualification }) => {
@@ -29,18 +28,15 @@ export const SpecialtyCard = ({ code, speciality, qualification }) => {
     if (selectedSpecialties.length === 2)
       return openNotificationWithIcon(
         "error",
-        <>Вы больше не можете выбирать специальности.</>
+        <>Вы не можете выбрать более 2-ух специальностей.</>
       );
-    // `Вы больше не можете выбирать специальности. ${(
-    //   <NavLink>Перейти к выбранным</NavLink>
-    // )}`
 
     setIsLoading(true);
     dispatch(addSpecialty(qualification));
     specialties();
     setTimeout(() => {
+      setIsLoading(false);
       setModalVisible(false);
-      setIsLoading((prev) => false);
     }, 1000);
   };
 
@@ -59,6 +55,7 @@ export const SpecialtyCard = ({ code, speciality, qualification }) => {
         hoverable
         cover={
           <img
+            style={{ miNheight: "10vh" }}
             alt=""
             src="https://www.seekpng.com/png/full/27-276623_welcome-to-softglobe-php-web-development-services.png"
           />
@@ -73,6 +70,9 @@ export const SpecialtyCard = ({ code, speciality, qualification }) => {
         onOk={() => setModalVisible(false)}
         onCancel={() => setModalVisible(false)}
         footer={[
+          <Button key="back" onClick={() => setModalVisible(false)}>
+            Отмена
+          </Button>,
           <Button
             key="submit"
             type="primary"
@@ -80,9 +80,6 @@ export const SpecialtyCard = ({ code, speciality, qualification }) => {
             onClick={handleClickYesModal}
           >
             Выбрать
-          </Button>,
-          <Button key="back" onClick={() => setModalVisible(false)}>
-            Отмена
           </Button>,
         ]}
       >

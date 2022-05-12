@@ -14,8 +14,8 @@ const { Step } = Steps;
 //Number(localStorage.getItem("current"))
 
 export const DataFillForms = () => {
-  let [current, setCurrent] = useState(0);
-  let [steps] = useState([
+  const [current, setCurrent] = useState(0);
+  const steps = [
     {
       title: "ФИО",
       content: <FullNameForm step={current} setStep={setCurrent} />,
@@ -41,13 +41,13 @@ export const DataFillForms = () => {
       content: <FamilyForm step={current} setStep={setCurrent} />,
       description: "Данные о родителях",
     },
-  ]);
+  ];
   // DEV
   console.log(current);
 
   // Only for Dev delete on prod
   const handleStep = (target) => {
-    setCurrent((current = target));
+    setCurrent((step) => target);
   };
   return (
     <>

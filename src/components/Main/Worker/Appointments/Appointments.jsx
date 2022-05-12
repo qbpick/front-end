@@ -1,3 +1,3 @@
 export const Appointments = (props) => {
-  return <></>;
+  return <>Appointments</>;
 };

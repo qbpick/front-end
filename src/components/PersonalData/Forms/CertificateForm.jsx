@@ -46,7 +46,7 @@ export const CertificateForm = ({ step, setStep }) => {
                     <div key={field.key}>
                       <Input.Group compact style={{ width: "100%" }}>
                         <Form.Item
-                          style={{ width: "75%" }}
+                          style={{ width: "80%" }}
                           name={[index, "lesson"]}
                           rules={[
                             { required: true, message: "Введите предмет" },
@@ -59,7 +59,6 @@ export const CertificateForm = ({ step, setStep }) => {
                           <Input placeholder="Предмет" />
                         </Form.Item>
                         <Form.Item
-                          style={{ width: "20%" }}
                           name={[index, "mark"]}
                           noStyle
                           rules={[
@@ -68,7 +67,7 @@ export const CertificateForm = ({ step, setStep }) => {
                         >
                           <Select
                             showSearch
-                            style={{ width: 100 }}
+                            style={{ width: "20%" }}
                             placeholder="Оценка"
                             optionFilterProp="children"
                             filterOption={(input, option) =>

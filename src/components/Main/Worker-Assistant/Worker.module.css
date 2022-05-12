@@ -1,0 +1,10 @@
+.logo {
+  font-size: 20px;
+  padding: 7px;
+  color: white;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.siteLayout .siteLayoutBackground {
+  background: #fff;
+}

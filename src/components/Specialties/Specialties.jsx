@@ -1,8 +1,8 @@
 import style from "./Specialties.module.css";
-import { Typography, Popover, Tooltip } from "antd";
+import { Typography, Tooltip, Spin, Progress } from "antd";
 import "antd/dist/antd.css";
 import { InfoCircleOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SpecialtyCard } from "./SpecialtyCard/SpecialtyCard";
 const { Title } = Typography;
 
@@ -10,10 +10,11 @@ const tooltipContent = (
   <div>
     <p>Вы можете подать документы только на 2 (две) специальности.</p>
     Нажав на специальность вы сможете подробнее узнать о ней.
-  </div> 
+  </div>
 );
 
 export function Specialties() {
+  /* DEV */
   const [mockMap, setMockMap] = useState([
     {
       code: "09.02.01",
@@ -80,6 +81,15 @@ export function Specialties() {
       qualification: "Электромеханик по торговому и холодильному оборудованию",
     },
   ]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [])
 
   return (
     <>
@@ -93,15 +103,22 @@ export function Specialties() {
       </Title>
 
       <br />
-      <div className={style.flexContainer}>
-        {mockMap.map(({ code, speciality, qualification }) => (
-          <SpecialtyCard
-            code={code}
-            speciality={speciality}
-            qualification={qualification}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <span style={{ display: "flex", placeContent: "center", marginTop: "30vh" }}>
+          <Spin size="large" />
+        </span>
+      ) : (
+        <div className={style.flexContainer}>
+          {mockMap.map(({ code, speciality, qualification }) => (
+            <SpecialtyCard
+              key={qualification + code}
+              code={code}
+              speciality={speciality}
+              qualification={qualification}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 }

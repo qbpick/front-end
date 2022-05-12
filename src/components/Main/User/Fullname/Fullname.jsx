@@ -1,6 +1,6 @@
 import { Form, Input, Button } from "antd";
 import { useState } from "react";
-
+import style from "../Main.module.css";
 import { CheckOutlined } from "@ant-design/icons";
 const mi = {
   minLength: 11,
@@ -19,7 +19,12 @@ export const Fullname = (props) => {
   };
   return (
     <>
-      <Form size="large" layout="vertical" onFinish={onFinish}>
+      <Form
+        className={style.forms}
+        size="large"
+        layout="vertical"
+        onFinish={onFinish}
+      >
         <Form.Item
           name="last_name"
           rules={[

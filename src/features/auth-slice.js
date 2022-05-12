@@ -4,15 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuth: JSON.parse(localStorage.getItem("auth")),
+    // isAuth: JSON.parse(localStorage.getItem("auth")),
+    isAuth: true,
     /* 
-      maybe sessionStorage for admins 
 			student - студент 
 			admin - администратор
 			admission-secretaty - секретарь приемной комиссии
 			admissions-officer - работник приемной комиссии - лох который только удаляет и добавляет
 	  */
-    role: "admin",
+    role: "admissions-officer",
   },
   reducers: {
     changeIsAuth: (state, action) => {

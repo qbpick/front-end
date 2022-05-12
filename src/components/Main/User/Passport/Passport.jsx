@@ -1,10 +1,8 @@
 import { Form, Input, Checkbox, Select, DatePicker, Button } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { Typography } from "antd";
-const { Title } = Typography;
+import style from "../Main.module.css";
 const { Option } = Select;
-
 
 const series = {
   minLength: 4,
@@ -28,8 +26,7 @@ export const Passport = (props) => {
 
   return (
     <>
-      <Title>Паспорт</Title>
-      <Form size="large" onFinish={onFinish}>
+      <Form className={style.forms} size="large" onFinish={onFinish}>
         {/* <Form.Item
           name="last_name"
           rules={[

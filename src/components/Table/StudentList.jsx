@@ -10,146 +10,146 @@ import {
   Input,
 } from "antd";
 
-// const data = [
-//   {
-//     key: "0",
-//     name: "John Brown qwewqe",
-//     score: 3.4,
-//     data: "Подтверждены",
-//     success: "да",
-//   },
-//   {
-//     key: "1",
-//     name: "Jim Green wewqerqw",
-//     score: 4.5,
-//     data: "Подтверждены",
-//     success: "нет",
-//   },
-//   {
-//     key: "2",
-//     name: "Joe Blackqw eqw",
-//     score: 4.3,
-//     data: "Не подтверждены",
-//     success: "да",
-//   },
-//   {
-//     key: "43",
-//     name: "Jim Red wqeqwe",
-//     score: 4.345,
-//     data: "Подтверждены",
-//     success: "да",
-//   },
-//   {
-//     key: "4",
-//     name: "Jim Red wqeqwe",
-//     score: 3.234,
-//     data: "Не подтверждены",
-//     success: "да",
-//   },
-//   {
-//     key: "5",
-//     name: "Jim Red wqeqwe",
-//     score: 5,
-//     data: "Не подтверждены",
-//     success: "нет",
-//   },
-// ];
+const data = [
+  {
+    key: "0",
+    name: "John Brown qwewqe",
+    score: 3.4,
+    data: "Подтверждены",
+    success: "да",
+  },
+  {
+    key: "1",
+    name: "Jim Green wewqerqw",
+    score: 4.5,
+    data: "Подтверждены",
+    success: "нет",
+  },
+  {
+    key: "2",
+    name: "Joe Blackqw eqw",
+    score: 4.3,
+    data: "Не подтверждены",
+    success: "да",
+  },
+  {
+    key: "43",
+    name: "Jim Red wqeqwe",
+    score: 4.345,
+    data: "Подтверждены",
+    success: "да",
+  },
+  {
+    key: "4",
+    name: "Jim Red wqeqwe",
+    score: 3.234,
+    data: "Не подтверждены",
+    success: "да",
+  },
+  {
+    key: "5",
+    name: "Jim Red wqeqwe",
+    score: 5,
+    data: "Не подтверждены",
+    success: "нет",
+  },
+];
 
 export const StudentList = () => {
   const [profile, setProfile] = useState(<></>);
   const [visible, setVisible] = useState(false);
-  let [records, setRecords] = useState([]);
+  const [records, setRecords] = useState([]);
 
-  let [filteredInfo, setFilteredInfo] = useState({});
-  let [sortedInfo, setSortedInfo] = useState({});
+  const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
 
-  let [data, setData] = useState([
-    {
-      key: "0",
-      name: "John Brown qwewqe",
-      score: 3.4,
-      data: "Подтверждены",
-      success: "да",
-    },
-    {
-      key: "1",
-      name: "Jim Green wewqerqw",
-      score: 4.5,
-      data: "Подтверждены",
-      success: "нет",
-    },
-    {
-      key: "2",
-      name: "Joe Blackqw eqw",
-      score: 4.3,
-      data: "Не подтверждены",
-      success: "да",
-    },
-    {
-      key: "3",
-      name: "Jim Red wqeqwe",
-      score: 4.345,
-      data: "Подтверждены",
-      success: "да",
-    },
-    {
-      key: "4",
-      name: "Jim Red wqeqwe",
-      score: 3.234,
-      data: "Не подтверждены",
-      success: "да",
-    },
-    {
-      key: "5",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-    {
-      key: "6",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-    {
-      key: "7",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-    {
-      key: "8",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-    {
-      key: "9",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-    {
-      key: "10",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-    {
-      key: "11",
-      name: "Jim Red wqeqwe",
-      score: 5,
-      data: "Не подтверждены",
-      success: "нет",
-    },
-  ]);
-  let [searchData, setSearchData] = useState(data);
+  // const [data, setData] = useState([
+  //   {
+  //     key: "0",
+  //     name: "John Brown qwewqe",
+  //     score: 3.4,
+  //     data: "Подтверждены",
+  //     success: "да",
+  //   },
+  //   {
+  //     key: "1",
+  //     name: "Jim Green wewqerqw",
+  //     score: 4.5,
+  //     data: "Подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "2",
+  //     name: "Joe Blackqw eqw",
+  //     score: 4.3,
+  //     data: "Не подтверждены",
+  //     success: "да",
+  //   },
+  //   {
+  //     key: "3",
+  //     name: "Jim Red wqeqwe",
+  //     score: 4.345,
+  //     data: "Подтверждены",
+  //     success: "да",
+  //   },
+  //   {
+  //     key: "4",
+  //     name: "Jim Red wqeqwe",
+  //     score: 3.234,
+  //     data: "Не подтверждены",
+  //     success: "да",
+  //   },
+  //   {
+  //     key: "5",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "6",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "7",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "8",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "9",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "10",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  //   {
+  //     key: "11",
+  //     name: "Jim Red wqeqwe",
+  //     score: 5,
+  //     data: "Не подтверждены",
+  //     success: "нет",
+  //   },
+  // ]);
+  const [searchData, setSearchData] = useState(data);
 
   let columns = [
     {
@@ -162,7 +162,7 @@ export const StudentList = () => {
       // ],
       filteredValue: filteredInfo.name || null,
       onFilter: (value, record) => record.name.includes(value),
-      sorter: (a, b) => a.name.length - b.name.length,
+      sorter: (a, b) => a.localeCompare(b),
       sortOrder: sortedInfo.columnKey === "name" && sortedInfo.order,
       ellipsis: true,
     },
@@ -217,10 +217,10 @@ export const StudentList = () => {
           ) : null}
           {columns.length >= 1 ? (
             <Popconfirm
-              title="ТЫ ЧЕ ТУПОЙ?"
+              title="Вы уверены?"
               onConfirm={() => handleDelete(record.key)}
             >
-              <a>Удолить</a>
+              <a>Удалить</a>
             </Popconfirm>
           ) : null}
         </Space>
@@ -230,17 +230,17 @@ export const StudentList = () => {
 
   const handleChange = (pagination, filters, sorter) => {
     // console.log("Various parameters", pagination, filters, sorter);
-    setFilteredInfo((filteredInfo = filters));
-    setSortedInfo((sortedInfo = sorter));
+    setFilteredInfo(filters);
+    setSortedInfo(sorter);
   };
 
   const clearFilters = () => {
-    setFilteredInfo((filteredInfo = []));
+    setFilteredInfo([]);
   };
 
   const clearAll = () => {
-    setFilteredInfo((filteredInfo = []));
-    setSortedInfo((sortedInfo = []));
+    setFilteredInfo([]);
+    setSortedInfo([]);
   };
 
   const setScoreSort = () => {
@@ -264,9 +264,11 @@ export const StudentList = () => {
     // setData((data = data.filter((el) => el.key in records.key)));
 
     // setData(data = data.filter((el) => el.key !== records));
+    const deleteSelected = [];
     for (let i = 0; i < records.length; i++) {
-      setSearchData((searchData = searchData.filter((el) => el.key !== records[i])));
+      deleteSelected[i] = searchData.filter((el) => el.key !== records[i]);
     }
+    setSearchData(deleteSelected);
     console.log(data);
     console.log(records);
   };
@@ -278,7 +280,7 @@ export const StudentList = () => {
         "selectedRows: ",
         selectedRows
       );
-      setRecords((records = selectedRowKeys));
+      setRecords(selectedRowKeys);
     },
     onSelect: (record, selected, selectedRows) => {
       console.log(record, selected, selectedRows);
@@ -288,23 +290,21 @@ export const StudentList = () => {
   const handleDelete = (key) => {
     console.log(key);
     // setColumns((columns = columns.filter((el) => el.key !== key)));
-    setSearchData((searchData = searchData.filter((el) => el.key !== key)));
+    setSearchData(searchData.filter((el) => el.key !== key));
   };
 
   const onSearch = (value) => {
     if (value.length) {
-      setSearchData(
-        (searchData = data.filter((el) => el.name.includes(value)))
-      );
+      setSearchData(data.filter((el) => el.name.includes(value)));
       console.log(searchData);
-    } else { 
-      setSearchData(searchData = data)
+    } else {
+      setSearchData(data);
     }
   };
 
   return (
     <>
-      <div style={{ width: "80%", margin: "0 auto" }}>
+      <div style={{ margin: "0 auto" }}>
         <Space style={{ marginBottom: 16 }}>
           <Button onClick={setScoreSort}>Сортировать по сред. баллу</Button>
           <Button onClick={clearFilters}>Отчистить фильтры</Button>
@@ -318,7 +318,7 @@ export const StudentList = () => {
           <Input.Search
             onSearch={onSearch}
             size="middle"
-            placeholder="Введите текс"
+            placeholder="Введите текст"
             enterButton
             allowClear
           />
