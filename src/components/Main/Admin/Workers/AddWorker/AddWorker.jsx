@@ -1,8 +1,9 @@
-import { Modal, Button } from "antd";
+import { Modal, Button, Form } from "antd";
 import { useState } from "react";
 import { WorkerForm } from "./WorkerForm";
 
 export const AddWorker = () => {
+  const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -14,11 +15,23 @@ export const AddWorker = () => {
   };
   const handleOk = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setVisible(false);
-    }, 1000);
+    form.validateFields().then(
+      () => {
+        setTimeout(() => {
+          form.resetFields();
+          setLoading(false);
+          setVisible(false)
+        }, 1000)
+      },
+      () => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000)
+      }
+    )
   };
+
+
 
   return (
     <>
@@ -35,7 +48,9 @@ export const AddWorker = () => {
             Отмена
           </Button>,
           <Button
+            form="createWorkerForm"
             key="submit"
+            htmlType="submit"
             type="primary"
             loading={loading}
             onClick={handleOk}
@@ -44,7 +59,7 @@ export const AddWorker = () => {
           </Button>,
         ]}
       >
-        <WorkerForm onOk={handleOk} />
+        <WorkerForm form={form} onOk={handleOk} />
       </Modal>
     </>
   );

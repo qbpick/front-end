@@ -73,7 +73,8 @@ export const Profile = (props) => {
             </div>
           )}
         </div>
-        <Divider orientation="left">Выбранные специальность</Divider>
+        <Divider orientation="left">Ваш средний балл - 4.6</Divider>
+        <Divider orientation="left">Выбранные специальности</Divider>
         <div className={style.selectedSpecialties}>
           {mockSelectedSpecialties.length ? (
             <List

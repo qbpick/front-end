@@ -35,6 +35,31 @@ const data = [
     name: "Jim Red wqeqwe",
     position: "Секретарь"
   },
+  {
+    key: "6",
+    name: "Jim Red wqeqwe",
+    position: "Секретарь"
+  },
+  {
+    key: "7",
+    name: "Jim Red wqeqwe",
+    position: "Секретарь"
+  },
+  {
+    key: "8",
+    name: "Jim Red wqeqwe",
+    position: "Секретарь"
+  },
+  {
+    key: "9",
+    name: "Jim Red wqeqwe",
+    position: "Секретарь"
+  },
+  {
+    key: "10",
+    name: "Jim Red wqeqwe",
+    position: "Секретарь"
+  },
 ];
 
 export const Workers = () => {
@@ -173,7 +198,7 @@ export const Workers = () => {
         <Table
           rowSelection={rowSelection}
           columns={columns}
-          pagination={{ position: ["none", "bottomRight"] }}
+          pagination={{ position: ["none", "bottomCenter"] }}
           dataSource={searchData}
           onChange={handleChange}
         />

@@ -8,6 +8,7 @@ import {
   Space,
   AutoComplete,
   Input,
+  Divider,
 } from "antd";
 
 const data = [
@@ -62,6 +63,9 @@ export const StudentList = () => {
 
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
+
+  // delete
+  let isDataConfirmed = false
 
   // const [data, setData] = useState([
   //   {
@@ -203,7 +207,7 @@ export const StudentList = () => {
       ellipsis: true,
     },
     {
-      title: "Кому сломать колени?",
+      title: "Действия",
       dataIndex: "operation",
       render: (_, record) => (
         <Space size="middle">
@@ -254,8 +258,23 @@ export const StudentList = () => {
     setVisible(true);
     setProfile(
       <>
-        <h1>Имя {profile.name}</h1>
-        <p>Средний балл {profile.score}</p>
+
+        <Divider orientation="left">ФИО</Divider>
+        <h1>{profile.name}</h1>
+        <Divider orientation="left">Средний балл - {profile.score}</Divider>
+        <Divider orientation="left">Данные</Divider>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span
+            style={{
+              fontWeight: "600",
+              color: isDataConfirmed ? "#7cb305" : "#cf1322",
+            }}
+          >
+            Данные {isDataConfirmed ? "подтверждены." : "не подтверждены."}
+          </span>
+          {" "}
+          {!isDataConfirmed ? <Button type="primary" >Подтвердить</Button> : <Button type="primary" >Оспорить</Button>}
+        </div>
       </>
     );
   };
@@ -310,7 +329,7 @@ export const StudentList = () => {
           <Button onClick={clearFilters}>Отчистить фильтры</Button>
           <Button onClick={clearAll}>Отчистить все фильтры и сортировки</Button>
           {/* <Popconfirm title="ТЫ ЧЕ deb?" onConfirm={handleDeleteChecked}> */}
-          <Button onClick={handleDeleteChecked}>Сломать колени</Button>
+          <Button onClick={handleDeleteChecked}>Удалить выбранных</Button>
           {/* </Popconfirm> */}
         </Space>
         <br />
@@ -318,7 +337,7 @@ export const StudentList = () => {
           <Input.Search
             onSearch={onSearch}
             size="middle"
-            placeholder="Введите текст"
+            placeholder="Поиск"
             enterButton
             allowClear
           />

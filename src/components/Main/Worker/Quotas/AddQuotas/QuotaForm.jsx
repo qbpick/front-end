@@ -2,14 +2,16 @@ import { Button, Form, Input, Select } from "antd";
 const { Option } = Select;
 const layout = {
   labelCol: {
-    span: 4,
+    span: 6,
   },
   wrapperCol: {
     span: 22,
   },
 };
 
-export const WorkerForm = ({ handleOk, form }) => {
+export const QuotaForm = ({ handleOk, form }) => {
+
+
   const changeFields = () => {
     form.validateFields();
   };
@@ -17,11 +19,12 @@ export const WorkerForm = ({ handleOk, form }) => {
     console.log(values);
     handleOk()
   };
+
   return (
-    <Form id="createWorkerForm" {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+    <Form id="createQuotaForm" {...layout} form={form} name="control-hooks" onFinish={onFinish}>
       <Form.Item
-        name="first_name"
-        label="Имя"
+        name="code"
+        label="Код"
         rules={[
           {
             required: true,
@@ -32,8 +35,8 @@ export const WorkerForm = ({ handleOk, form }) => {
         <Input onChange={changeFields} />
       </Form.Item>
       <Form.Item
-        name="last_name"
-        label="Фамилия"
+        name="speciality"
+        label="Специальность"
         rules={[
           {
             required: true,
@@ -44,8 +47,8 @@ export const WorkerForm = ({ handleOk, form }) => {
         <Input onChange={changeFields} />
       </Form.Item>
       <Form.Item
-        name="middle_name"
-        label="Отчество"
+        name="qualification"
+        label="Квалификация"
         rules={[
           {
             required: true,
@@ -56,8 +59,8 @@ export const WorkerForm = ({ handleOk, form }) => {
         <Input onChange={changeFields} />
       </Form.Item>
       <Form.Item
-        name="login"
-        label="Логин"
+        name="places"
+        label="Кол-во мест"
         rules={[
           {
             required: true,
@@ -67,35 +70,7 @@ export const WorkerForm = ({ handleOk, form }) => {
       >
         <Input onChange={changeFields} />
       </Form.Item>
-      <Form.Item
-        name="password"
-        label="Пароль"
-        rules={[
-          {
-            required: true,
-            message: "Это поле обязательно",
-          },
-        ]}
-      >
-        <Input onChange={changeFields} />
-      </Form.Item>
-      <Form.Item
-        name="role"
-        label="Роль"
-        rules={[
-          {
-            required: true,
-            message: "Это поле обязательно",
-          },
-        ]}
-      >
-        <Select onChange={changeFields} placeholder="Роль работника" allowClear>
-          <Option value="admission-secretaty">
-            Cекретарь приемной комиссии
-          </Option>
-          <Option value="admissions-officer">Работник приемной комиссии</Option>
-        </Select>
-      </Form.Item>
+
     </Form>
   );
 };
